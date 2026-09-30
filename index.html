@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Day With Him</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="page">
+
+    <header class="top">
+      <h1>A Day With Him</h1>
+
+      <button id="switch-story" class="switch-button" type="button">
+        Switch story
+      </button>
+    </header>
+
+    <section class="story">
+
+      <div class="story-heading">
+        <span id="story-label">01</span>
+        <h2 id="story-title">A Rough Day Gets Better</h2>
+      </div>
+
+      <div class="photo-area">
+
+        <button id="previous" class="arrow arrow-left" type="button" aria-label="Previous photo">
+          ←
+        </button>
+
+        <div class="photo-wrapper">
+          <img
+            id="story-image"
+            src="images/cone.jpg"
+            alt="Golden retriever wearing a recovery cone"
+          >
+        </div>
+
+        <button id="next" class="arrow arrow-right" type="button" aria-label="Next photo">
+          →
+        </button>
+
+      </div>
+
+      <div class="bottom">
+
+        <span id="counter">01 / 03</span>
+
+        <div class="caption">
+          <h3 id="caption-title">Not his best afternoon.</h3>
+
+          <p id="caption-description">
+            Sometimes the day begins a little differently than expected.
+          </p>
+        </div>
+
+        <div class="progress">
+          <span class="progress-dot active"></span>
+          <span class="progress-dot"></span>
+          <span class="progress-dot"></span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
