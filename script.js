@@ -1,115 +1,125 @@
-const photos = {
-  cone: {
-    image: "images/cone.jpg",
-    alt: "Golden retriever wearing a recovery cone"
-  },
+let currentImage = 0;
+let currentStory = 1;
 
-  toy: {
-    image: "images/toy.jpg",
-    alt: "Golden retriever looking at a toy"
-  },
+const storyImage = document.getElementById("storyImage");
+const step = document.getElementById("step");
+const captionTitle = document.getElementById("captionTitle");
+const captionText = document.getElementById("captionText");
+const counter = document.getElementById("counter");
 
-  happy: {
-    image: "images/happy.jpg",
-    alt: "Golden retriever relaxing outside"
-  }
-};
+const storyOneButton = document.getElementById("storyOne");
+const storyTwoButton = document.getElementById("storyTwo");
+const previousButton = document.getElementById("previousButton");
+const nextButton = document.getElementById("nextButton");
 
-const stories = [
-  {
-    label: "01",
-    title: "A Rough Day Gets Better",
-    sequence: [
-      {
-        photo: photos.cone,
-        title: "Not his best afternoon.",
-        description: "Sometimes the day begins a little differently than expected."
-      },
-      {
-        photo: photos.toy,
-        title: "Then something catches his eye.",
-        description: "A familiar toy makes the afternoon a little more interesting."
-      },
-      {
-        photo: photos.happy,
-        title: "Back to his usual self.",
-        description: "By the end of the day, the difficult moment already feels far away."
-      }
-    ]
-  },
-
-  {
-    label: "02",
-    title: "A Good Day Takes a Turn",
-    sequence: [
-      {
-        photo: photos.happy,
-        title: "Everything seems perfect.",
-        description: "A quiet afternoon outside with absolutely nothing to worry about."
-      },
-      {
-        photo: photos.toy,
-        title: "One last distraction.",
-        description: "There is always time to investigate something interesting."
-      },
-      {
-        photo: photos.cone,
-        title: "Well... maybe not.",
-        description: "The afternoon ends a little differently than expected."
-      }
-    ]
-  }
+const storyOneImages = [
+    "images/waiting.jpg",
+    "images/looking.jpg",
+    "images/running.png"
 ];
 
-let currentStory = 0;
-let currentPhoto = 0;
+const storyOneTitles = [
+    "So Bored...",
+    "Wait... What Was That?",
+    "Finally Outside!"
+];
 
-const storyImage = document.querySelector("#story-image");
-const storyTitle = document.querySelector("#story-title");
-const storyLabel = document.querySelector("#story-label");
-const captionTitle = document.querySelector("#caption-title");
-const captionDescription = document.querySelector("#caption-description");
-const counter = document.querySelector("#counter");
-const previousButton = document.querySelector("#previous");
-const nextButton = document.querySelector("#next");
-const switchButton = document.querySelector("#switch-story");
-const progressDots = document.querySelectorAll(".progress-dot");
+const storyOneTexts = [
+    "I wish we could go outside.",
+    "Did I hear someone coming?",
+    "Out playing with my big brother!"
+];
 
-function displayPhoto() {
-  const story = stories[currentStory];
-  const item = story.sequence[currentPhoto];
+const storyTwoImages = [
+    "images/running.png",
+    "images/looking.jpg",
+    "images/waiting.jpg"
+];
 
-  storyImage.src = item.photo.image;
-  storyImage.alt = item.photo.alt;
-  storyTitle.textContent = story.title;
-  storyLabel.textContent = story.label;
-  captionTitle.textContent = item.title;
-  captionDescription.textContent = item.description;
-  counter.textContent = `0${currentPhoto + 1} / 03`;
+const storyTwoTitles = [
+    "Playtime!",
+    "Back Home",
+    "Nap Time"
+];
 
-  progressDots.forEach((dot, index) => {
-    dot.classList.toggle("active", index === currentPhoto);
-  });
+const storyTwoTexts = [
+    "Running around outside with my big brother.",
+    "That was fun... but I'm getting tired.",
+    "Time to curl up with my favorite toy."
+];
+
+const steps = [
+    "BEGINNING",
+    "MIDDLE",
+    "END"
+];
+
+function showImage() {
+
+    if (currentStory === 1) {
+        storyImage.src = storyOneImages[currentImage];
+        captionTitle.innerHTML = storyOneTitles[currentImage];
+        captionText.innerHTML = storyOneTexts[currentImage];
+    }
+
+    if (currentStory === 2) {
+        storyImage.src = storyTwoImages[currentImage];
+        captionTitle.innerHTML = storyTwoTitles[currentImage];
+        captionText.innerHTML = storyTwoTexts[currentImage];
+    }
+
+    step.innerHTML = steps[currentImage];
+    counter.innerHTML = currentImage + 1 + " / 3";
 }
 
-function nextPhoto() {
-  currentPhoto = (currentPhoto + 1) % 3;
-  displayPhoto();
+function nextImage() {
+
+    currentImage = currentImage + 1;
+
+    if (currentImage > 2) {
+        currentImage = 0;
+    }
+
+    showImage();
 }
 
-function previousPhoto() {
-  currentPhoto = (currentPhoto - 1 + 3) % 3;
-  displayPhoto();
+function previousImage() {
+
+    currentImage = currentImage - 1;
+
+    if (currentImage < 0) {
+        currentImage = 2;
+    }
+
+    showImage();
 }
 
-function switchStory() {
-  currentStory = currentStory === 0 ? 1 : 0;
-  currentPhoto = 0;
-  displayPhoto();
+function showStoryOne() {
+
+    currentStory = 1;
+    currentImage = 0;
+
+    storyOneButton.classList.add("active");
+    storyTwoButton.classList.remove("active");
+
+    showImage();
 }
 
-nextButton.addEventListener("click", nextPhoto);
-previousButton.addEventListener("click", previousPhoto);
-switchButton.addEventListener("click", switchStory);
+function showStoryTwo() {
 
-displayPhoto();
+    currentStory = 2;
+    currentImage = 0;
+
+    storyTwoButton.classList.add("active");
+    storyOneButton.classList.remove("active");
+
+    showImage();
+}
+
+nextButton.addEventListener("click", nextImage);
+previousButton.addEventListener("click", previousImage);
+
+storyOneButton.addEventListener("click", showStoryOne);
+storyTwoButton.addEventListener("click", showStoryTwo);
+
+showImage();
