@@ -35,30 +35,32 @@ h1 {
     margin: 0;
     font-family: Georgia, serif;
     font-size: 37px;
-    font-weight: normal;
+    font-weight: bold;
     line-height: 1.1;
     color: #49372a;
 }
 
 .intro {
     margin: 6px 0 0;
-    color: #69513f;
-    font-size: 12px;
+    color: #604631;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .sequence-buttons {
     display: flex;
     justify-content: center;
     gap: 9px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .story-button {
     border: 1px solid rgba(103, 72, 47, 0.38);
     background-color: rgba(224, 190, 145, 0.92);
     color: #594230;
-    padding: 8px 18px;
-    font-size: 12px;
+    padding: 9px 19px;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
     border-radius: 3px;
     box-shadow: 0 2px 5px rgba(73, 51, 34, 0.07);
@@ -77,27 +79,43 @@ h1 {
 }
 
 .carousel {
-    background-color: rgba(231, 204, 164, 0.96);
-    padding: 16px 16px 13px;
-    border: 1px solid rgba(112, 78, 49, 0.2);
-    border-radius: 4px;
-    box-shadow:
-        0 9px 22px rgba(67, 46, 29, 0.12),
-        0 2px 5px rgba(67, 46, 29, 0.06);
+    width: 100%;
+    margin: 0 auto;
 }
 
-.photo-frame {
-    width: 100%;
-    height: 415px;
+.camera-area {
+    position: relative;
+    width: 760px;
+    height: 500px;
+    margin: 0 auto;
     overflow: hidden;
-    background-color: #cfb48e;
+}
+
+.camera-frame {
+    position: absolute;
+    width: 760px;
+    height: auto;
+    left: 0;
+    top: -40px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.camera-screen {
+    position: absolute;
+    left: 55px;
+    top: 117px;
+    width: 449px;
+    height: 343px;
+    background-color: #111;
+    overflow: hidden;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 2px;
 }
 
-.photo-frame img {
+.camera-screen img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -105,64 +123,78 @@ h1 {
 }
 
 .story-text {
+    width: 540px;
+    margin: 6px auto 0;
+    padding: 8px 20px 8px;
     text-align: center;
-    padding: 15px 20px 12px;
 }
 
 #step {
     margin: 0 0 5px;
-    font-size: 9px;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 2px;
-    color: #8d6748;
+    color: #513725;
+    text-shadow: 0 1px 1px rgba(245, 222, 188, 0.8);
 }
 
 .story-text h2 {
-    margin: 0 0 4px;
+    margin: 0 0 5px;
     font-family: Georgia, serif;
-    font-size: 23px;
-    font-weight: normal;
-    color: #49372a;
+    font-size: 28px;
+    font-weight: bold;
+    color: #38271c;
+    text-shadow: 0 1px 1px rgba(245, 222, 188, 0.8);
 }
 
 #captionText {
     margin: 0;
-    color: #654d3b;
-    font-size: 12px;
+    color: #493326;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 0 1px 1px rgba(245, 222, 188, 0.8);
 }
 
 .controls {
+    width: 540px;
+    margin: 5px auto 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid rgba(103, 72, 47, 0.18);
-    padding: 10px 2px 1px;
+    border-top: 2px solid rgba(72, 46, 29, 0.55);
+    padding: 12px 5px 0;
 }
 
 .controls button {
     border: none;
     background-color: transparent;
-    color: #594230;
-    font-size: 12px;
+    color: #352419;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    padding: 6px 5px;
+    padding: 7px 8px;
+    text-shadow: 0 1px 1px rgba(245, 222, 188, 0.8);
     transition: transform 0.2s ease;
 }
 
 .controls button:hover {
-    transform: translateX(2px);
+    transform: translateX(3px);
 }
 
 #previousButton:hover {
-    transform: translateX(-2px);
+    transform: translateX(-3px);
 }
 
 #counter {
     margin: 0;
-    font-size: 11px;
-    color: #765b46;
+    font-size: 14px;
+    font-weight: 700;
+    color: #3f2b1e;
+    text-shadow: 0 1px 1px rgba(245, 222, 188, 0.8);
 }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
+
     .page {
         width: 94%;
         padding-top: 75px;
@@ -176,7 +208,16 @@ h1 {
         flex-direction: column;
     }
 
-    .photo-frame {
-        height: 350px;
+    .camera-area {
+        width: 100%;
+        max-width: 760px;
+        transform: scale(0.8);
+        transform-origin: top center;
+        margin-bottom: -100px;
+    }
+
+    .story-text,
+    .controls {
+        width: 90%;
     }
 }
